@@ -1,7 +1,15 @@
+require tdx-reference-minimal-image.bb
+
 SUMMARY = "MMG Production Image"
 
 LICENSE = "GPLv3"
 
-inherit tdx-reference-minimal-image
+#Prefix to the resulting deployable tarball name
+export IMAGE_BASENAME = "MMG-Image"
 
-CORE_IMAGE_EXTRA_INSTALL = "ethtool inotify-tools"
+IMAGE_LINGUAS = "en-gb"
+
+IMAGE_INSTALL += " \
+	ethtool \
+	inotify-tools"\
+"

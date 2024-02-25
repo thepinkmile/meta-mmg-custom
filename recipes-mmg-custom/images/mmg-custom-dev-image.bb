@@ -7,4 +7,6 @@ require mmg-custom-image.bb
 
 IMAGE_FEATURES += " tools-debug debug-tweaks"
 
-CORE_IMAGE_EXTRA_INSTALL = "mmg-custom-packagegroup-testapps"
+IMAGE_INSTALL += " \
+	mmg-custom-packagegroup-testapps"\
+"
