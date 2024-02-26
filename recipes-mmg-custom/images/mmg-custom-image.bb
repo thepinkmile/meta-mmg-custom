@@ -9,6 +9,10 @@ export IMAGE_BASENAME = "MMG-Image"
 
 IMAGE_LINGUAS = "en-gb"
 
+IMAGE_FEATURES += " \
+	ssh-server-openssh \
+"
+
 IMAGE_INSTALL += " \
 	ethtool \
 	inotify-tools"\
