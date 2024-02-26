@@ -1,8 +1,7 @@
+CONMANPKGS = "" # do not add connman packages as we will use networkmanager instead.
 require tdx-reference-minimal-image.bb
 
 SUMMARY = "MMG Production Image"
-
-LICENSE = "GPLv3"
 
 #Prefix to the resulting deployable tarball name
 export IMAGE_BASENAME = "MMG-Image"
@@ -14,6 +13,7 @@ IMAGE_FEATURES += " \
 "
 
 IMAGE_INSTALL += " \
-	ethtool \
-	inotify-tools"\
+	packagegroup-mmg-base \
+	packagegroup-fsl-gstreamer1.0-full \
+	packagegroup-base-tdx-cli \
 "

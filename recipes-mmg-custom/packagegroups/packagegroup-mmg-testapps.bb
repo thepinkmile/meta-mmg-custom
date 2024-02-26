@@ -10,4 +10,5 @@ RDEPENDS_${PN} = " \
 	fbset \
 	i2c-tools \
 	memtester \
+	sudo \
 "
