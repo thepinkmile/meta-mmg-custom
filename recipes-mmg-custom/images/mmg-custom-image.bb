@@ -1,4 +1,3 @@
-CONMANPKGS = "" # do not add connman packages as we will use networkmanager instead.
 require tdx-reference-minimal-image.bb
 
 SUMMARY = "MMG Production Image"
@@ -17,3 +16,10 @@ IMAGE_INSTALL += " \
 	packagegroup-fsl-gstreamer1.0-full \
 	packagegroup-base-tdx-cli \
 "
+
+# Going to use networkmanager instead of conman
+IMAGE_INSTALL:remove = " ${CONMANPKGS}"
+
+# Add NetworkManager
+IMAGE_INSTALL:append = " networkmanager"
+IMAGE_INSTALL:append = " modemmanager"
