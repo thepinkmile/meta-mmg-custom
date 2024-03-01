@@ -1,0 +1,96 @@
+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+/*
+ * Copyright 2024 The Pink Mile
+ */
+
+ /dts-v1/;
+ 
+ / {
+    reg_ao_fec: regulator-eth2phy {
+        compatible = "regulator-fixed";
+        regulator-always-on;
+        regulator-max-microvolt = <3300000>;
+        regulator-min-microvolt = <3300000>;
+        regulator-name = "+V3.3_ETH";
+        startup-delay-us = <240000>;
+    };
+ };
+ 
+ &eqos {
+    status = "okay";
+ };
+ 
+ // Enable second ethernet device
+ &fec {
+    phy-supply: <&reg_ao_fec>;
+    status: "okay";
+ };
+ 
+ /* Current measurement into module VCC */
+ &hwmon {
+    status = "okay";
+ };
+ 
+ &hwmon_temp {
+    vs-supply = <&reg_1p8v>;
+    status = "okay";
+ };
+ 
+ /* Verdin I2C_2_DSI */
+ &i2c2 {
+    status = "okay";
+ };
+ 
+ &i2c3 {
+    status = "okay";
+ };
+ 
+ /* Verdin I2C_1 */
+ &i2c4 {
+    status = "okay";
+
+    /* Audio Codec */
+    nau8822_1a: audio-codec@1a {
+        compatible = "nuvoton,nau8822";
+        reg = <0x1a>;
+        pinctrl-names = "default";
+        pinctrl-0 = <&pinctrl_sai1>;
+        #sound-dai-cells = <0>;
+    };
+ };
+ 
+ /* Verdin I2S_1 */
+ &sai1 {
+    assigned-clocks = <&clk IMX8MP_CLK_SAI1>;
+    assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL1_OUT>;
+    assigned-clock-rates = <24576000>;
+    fsl,sai-mclk-direction-output;
+    status = "okay";
+ };
+ 
+ /* ---------- Disabled Devices ---------- */
+ 
+ /* EEPROM on display adapter boards */
+ &eeprom_display_adapter {
+    status = "disabled";
+ };
+ 
+ /* EEPROM on Verdin Development board */
+ &eeprom_carrier_board {
+    status = "disabled";
+ };
+ 
+ /* Verdin SPI_1 */
+ &ecspi1 {
+    status = "disabled";
+ };
+
+ &gpio_expander_21 {
+    status = "disabled";
+ };
+ 
+ /* Not used as we will re-assign the pins for other stuff later */
+ &usdhc2 {
+    status = "disabled";
+ };
+ 
